@@ -1,9 +1,9 @@
 plugins {
     kotlin("jvm") version "1.4.32"
+    id("fr.brouillard.oss.gradle.jgitver") version "0.9.1"
 }
 
 group = "nl.hiddewieringa"
-version = "1.0-SNAPSHOT"
 
 repositories {
     mavenCentral()
