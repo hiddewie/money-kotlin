@@ -18,6 +18,11 @@ dependencies {
     testImplementation("org.junit.jupiter", "junit-jupiter", "5.7.1")
 }
 
+java {
+    withJavadocJar()
+    withSourcesJar()
+}
+
 tasks {
     withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
         kotlinOptions {
