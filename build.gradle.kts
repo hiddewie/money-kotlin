@@ -1,11 +1,11 @@
 import fr.brouillard.oss.jgitver.Strategies
-import java.net.URI
 
 plugins {
     kotlin("jvm") version "1.4.32"
     id("fr.brouillard.oss.gradle.jgitver") version "0.9.1"
     `maven-publish`
     signing
+    id("io.github.gradle-nexus.publish-plugin") version "1.0.0"
 }
 
 group = "nl.hiddewieringa"
@@ -72,22 +72,17 @@ publishing {
             from(components["java"])
         }
     }
-
-    repositories {
-        maven {
-            url = if (version.toString().endsWith("-SNAPSHOT")) {
-                URI("https://s01.oss.sonatype.org/content/repositories/snapshots/")
-            } else {
-                URI("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
-            }
-            credentials {
-                username = project.property("ossrhUsername").toString()
-                password = project.property("ossrhPassword").toString()
-            }
-        }
-    }
 }
 
 signing {
     sign(publishing.publications)
+}
+
+nexusPublishing {
+    repositories {
+        sonatype {
+            nexusUrl.set(uri("https://s01.oss.sonatype.org/service/local/"))
+            snapshotRepositoryUrl.set(uri("https://s01.oss.sonatype.org/content/repositories/snapshots/"))
+        }
+    }
 }

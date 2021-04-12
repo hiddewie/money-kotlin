@@ -111,3 +111,35 @@ conversionQuery {
     setBaseCurrency("EUR")
 }
 ```
+
+## Releasing and publishing
+
+### Preparation
+
+Ensure that the properties `signing.keyId`, `signing.password` and `signing.secretKeyRingFile=` are set in `~/.gradle/gradle.properties`.
+These properties are neccesary for signing releases.
+
+Ensure that the properties `sonatypeUsername` and `sonatypePassword` are set in `~/.gradle/gradle.properties`.
+These properties are credentials for publishing to Maven Central.
+
+### Building
+
+Build the project
+```bash
+./gradlew clean build
+```
+
+### Releasing
+
+Release a version by tagging a Git commit
+```bash
+git tag -a 1.0.0 -m "Version 1.0.0"
+```
+
+### Publishing
+
+Publish the release to Sonatype
+```bash
+./gradlew publishToSonatype closeAndReleaseSonatypeStagingRepository
+```
+This will publish the artifacts to Maven Central.
