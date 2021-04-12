@@ -9,6 +9,10 @@ This code builds upon the Money API  of the JSR proposal, not the [Moneta classe
 - Kotlin extension functions for all the `*Builder` in the `javax.money` package.
 - Kotlin operator functions for the operators defined in `javax.money.MonetaryAmount`.
 
+## Requirements
+
+At least Java 11.
+
 ## Examples
 
 All the extension/operator functions have an associated test in [`src/test/kotlin`](src/test/kotlin).

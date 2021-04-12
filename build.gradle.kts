@@ -1,7 +1,11 @@
+import fr.brouillard.oss.jgitver.Strategies
+import java.net.URI
+
 plugins {
     kotlin("jvm") version "1.4.32"
     id("fr.brouillard.oss.gradle.jgitver") version "0.9.1"
     `maven-publish`
+    signing
 }
 
 group = "nl.hiddewieringa"
@@ -34,6 +38,10 @@ tasks {
     }
 }
 
+jgitver {
+    strategy(Strategies.MAVEN)
+}
+
 publishing {
     publications {
         create<MavenPublication>("maven") {
@@ -55,12 +63,31 @@ publishing {
                     }
                 }
                 scm {
-                    developerConnection.set("scm:git:ssh://git@github.com:hiddewie/money-kotlin.git")
-                    url.set("https://github.com/hiddewie/money-kotlin.git")
+                    connection.set("scm:git:git://github.com:hiddewie/money-kotlin.git")
+                    developerConnection.set("scm:git:ssh://github.com:hiddewie/money-kotlin.git")
+                    url.set("https://github.com/hiddewie/money-kotlin/tree/master")
                 }
             }
 
             from(components["java"])
         }
     }
+
+    repositories {
+        maven {
+            url = if (version.toString().endsWith("-SNAPSHOT")) {
+                URI("https://s01.oss.sonatype.org/content/repositories/snapshots/")
+            } else {
+                URI("https://s01.oss.sonatype.org/service/local/staging/deploy/maven2/")
+            }
+            credentials {
+                username = project.property("ossrhUsername").toString()
+                password = project.property("ossrhPassword").toString()
+            }
+        }
+    }
+}
+
+signing {
+    sign(publishing.publications)
 }
