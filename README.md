@@ -13,6 +13,26 @@ This code builds upon the Money API  of the JSR proposal, not the [Moneta classe
 
 At least Java 11.
 
+## Installation
+
+Find the latest version on [Maven Central](https://search.maven.org/artifact/nl.hiddewieringa/money-kotlin/).
+
+Add the `money-kotlin` dependency to your project.
+
+Gradle:
+```kotlin
+implementation("nl.hiddewieringa:money-kotlin:$moneyKotlinVersion")
+```
+
+Maven:
+```xml
+<dependency>
+  <groupId>nl.hiddewieringa</groupId>
+  <artifactId>money-kotlin</artifactId>
+  <version>${moneyKotlin.version}</version>
+</dependency>
+```
+
 ## Examples
 
 All the extension/operator functions have an associated test in [`src/test/kotlin`](src/test/kotlin).
