@@ -82,11 +82,11 @@ currencyQuery {
 
 ### Locale
 
-``kotlin
+```kotlin
 "NL".asCountryLocale()
 "NL".asCountryLocale().getCurrency()
 "NL".asCountryLocale().getCurrencies()
-``
+```
 
 ### Rounding
 
