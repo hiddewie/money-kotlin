@@ -2,7 +2,7 @@
 
 Extensions which makes working with [`javax.money` JSR 354](https://jcp.org/en/jsr/detail?id=354) with easier when using Kotlin.
 
-This code builds upon the Money API  of the JSR proposal, not the [Moneta classes](https://github.com/JavaMoney/jsr354-ri#readme) in the reference implementation.
+This code builds upon the Money API of the JSR proposal, not the [Moneta classes](https://github.com/JavaMoney/jsr354-ri#readme) in the reference implementation.
 
 ## Features
 
@@ -32,6 +32,8 @@ Maven:
   <version>${moneyKotlin.version}</version>
 </dependency>
 ```
+
+This library depends only on the Money API of the JSR proposal. Ensure you add a dependency on a specific implementation such as `org.javamoney:moneta:<version>`.
 
 ## Examples
 
