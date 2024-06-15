@@ -24,7 +24,7 @@ dependencies {
     api("javax.money", "money-api", "1.1")
     implementation(kotlin("stdlib"))
 
-    testImplementation("org.javamoney", "moneta", "1.4.2")
+    testImplementation("org.javamoney", "moneta", "1.4.4")
     testImplementation("org.junit.jupiter", "junit-jupiter", "5.10.2")
 }
 
