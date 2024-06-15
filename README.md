@@ -11,7 +11,9 @@ This code builds upon the Money API  of the JSR proposal, not the [Moneta classe
 
 ## Requirements
 
-At least Java 11.
+At least Java 21.
+
+At least Kotlin 2.
 
 ## Installation
 
