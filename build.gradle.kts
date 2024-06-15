@@ -25,7 +25,7 @@ dependencies {
     implementation(kotlin("stdlib"))
 
     testImplementation("org.javamoney", "moneta", "1.4.2")
-    testImplementation("org.junit.jupiter", "junit-jupiter", "5.7.1")
+    testImplementation("org.junit.jupiter", "junit-jupiter", "5.10.2")
 }
 
 java {
