@@ -29,14 +29,14 @@ class MonetaryExtensionsTest {
     fun `as country locale`() {
         assertEquals(
             "NL".asCountryLocale(),
-            Locale("", "NL")
+            Locale.of("", "NL")
         )
     }
 
     @Test
     fun `locale currency`() {
         assertEquals(
-            Locale("", "NL").getCurrency(),
+            Locale.of("", "NL").getCurrency(),
             "EUR".asCurrency()
         )
     }
@@ -44,7 +44,7 @@ class MonetaryExtensionsTest {
     @Test
     fun currencies() {
         assertEquals(
-            Locale("", "NL").getCurrencies(),
+            Locale.of("", "NL").getCurrencies(),
             setOf("EUR".asCurrency())
         )
     }

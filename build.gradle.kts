@@ -14,6 +14,12 @@ repositories {
     mavenCentral()
 }
 
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(21))
+    }
+}
+
 dependencies {
     api("javax.money", "money-api", "1.1")
     implementation(kotlin("stdlib"))
@@ -28,11 +34,6 @@ java {
 }
 
 tasks {
-    withType<org.jetbrains.kotlin.gradle.tasks.KotlinCompile> {
-        kotlinOptions {
-            jvmTarget = "11"
-        }
-    }
     withType<Test> {
         useJUnitPlatform()
     }
