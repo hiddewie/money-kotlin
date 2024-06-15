@@ -1,7 +1,7 @@
 import fr.brouillard.oss.jgitver.Strategies
 
 plugins {
-    kotlin("jvm") version "1.4.32"
+    kotlin("jvm") version "2.0.0"
     id("fr.brouillard.oss.gradle.jgitver") version "0.9.1"
     `maven-publish`
     signing
