@@ -5,7 +5,7 @@ plugins {
     id("fr.brouillard.oss.gradle.jgitver") version "0.9.1"
     `maven-publish`
     signing
-    id("io.github.gradle-nexus.publish-plugin") version "1.0.0"
+    id("io.github.gradle-nexus.publish-plugin") version "2.0.0"
 }
 
 group = "nl.hiddewieringa"
