@@ -36,13 +36,23 @@ fun Locale.getCurrencies(vararg providers: String): Set<CurrencyUnit> =
 fun String.asConversion(vararg providers: String): CurrencyConversion =
     MonetaryConversions.getConversion(this, *providers)
 
+
+private val defaultAmountType: Class<out MonetaryAmount> = Monetary.getDefaultAmountType()
+
 /**
  * @see Monetary.getAmountFactory
  */
+@Suppress("UNCHECKED_CAST")
 fun <T : MonetaryAmount> monetaryAmount(type: Class<T>, init: MonetaryAmountFactory<T>.() -> Unit = {}): T =
-    Monetary.getAmountFactory(type)
-        .apply(init)
-        .create()
+    when (type) {
+        MonetaryAmount::class.java -> defaultAmountType as Class<T>
+        else -> type
+    }
+        .let {
+            Monetary.getAmountFactory(it)
+                .apply(init)
+                .create()
+        }
 
 /**
  * @see Monetary.getAmountFactories

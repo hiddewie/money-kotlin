@@ -2,6 +2,7 @@ package nl.hiddewieringa.money
 
 import nl.hiddewieringa.money.format.amountFormatQuery
 import org.javamoney.moneta.FastMoney
+import org.javamoney.moneta.Money
 import org.junit.jupiter.api.Assertions.assertEquals
 import org.junit.jupiter.api.Assertions.assertNotNull
 import org.junit.jupiter.api.Disabled
@@ -9,6 +10,7 @@ import org.junit.jupiter.api.Test
 import org.junit.jupiter.api.assertThrows
 import java.util.*
 import javax.money.Monetary
+import javax.money.MonetaryAmount
 import javax.money.UnknownCurrencyException
 
 class MonetaryExtensionsTest {
@@ -56,17 +58,52 @@ class MonetaryExtensionsTest {
     }
 
     @Test
+    fun `default monetary amount`() {
+        with(monetaryAmount<MonetaryAmount> { setNumber(10); setCurrency("EUR") }) {
+            assertNotNull(this)
+            assertEquals(this::class, Money::class)
+        }
+
+        with(monetaryAmount(MonetaryAmount::class.java) { setNumber(10); setCurrency("EUR") }) {
+            assertNotNull(this)
+            assertEquals(this::class, Money::class)
+        }
+
+        with(10.ofCurrency<MonetaryAmount>("EUR")) {
+            assertNotNull(this)
+            assertEquals(this::class, Money::class)
+        }
+
+        with(10.ofCurrency<MonetaryAmount>("EUR".asCurrency())) {
+            assertNotNull(this)
+            assertEquals(this::class, Money::class)
+        }
+
+        assertNotNull(10.ofCurrency("EUR"))
+        assertNotNull(10.ofCurrency("EUR".asCurrency()))
+    }
+
+    @Test
     fun `monetary amount`() {
-        assertNotNull(monetaryAmount<FastMoney> {
-            setNumber(10)
-            setCurrency("EUR")
-        })
-        assertNotNull(monetaryAmount(FastMoney::class.java) {
-            setNumber(10)
-            setCurrency("EUR")
-        })
-        assertNotNull(10.ofCurrency<FastMoney>("EUR"))
-        assertNotNull(10.ofCurrency<FastMoney>("EUR".asCurrency()))
+        with(monetaryAmount<FastMoney> { setNumber(10); setCurrency("EUR") }) {
+            assertNotNull(this)
+            assertEquals(this::class, FastMoney::class)
+        }
+
+        with(monetaryAmount(FastMoney::class.java) { setNumber(10); setCurrency("EUR") }) {
+            assertNotNull(this)
+            assertEquals(this::class, FastMoney::class)
+        }
+
+        with(10.ofCurrency<FastMoney>("EUR")) {
+            assertNotNull(this)
+            assertEquals(this::class, FastMoney::class)
+        }
+
+        with(10.ofCurrency<FastMoney>("EUR".asCurrency())) {
+            assertNotNull(this)
+            assertEquals(this::class, FastMoney::class)
+        }
     }
 
     @Test
