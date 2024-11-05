@@ -47,6 +47,13 @@ All the extension/operator functions have an associated test in [`src/test/kotli
 // Create a monetary amount of a specific type and currency
 val money = (10.0).ofCurrency<FastMoney>("EUR")
 
+// Create a monetary amount of a default type for the provider and currency.
+// If using Moneta, its default type is Money and can be changed by specifying 
+// org.javamoney.moneta.Money.defaults.amountType in the javamoney.properties.
+val money = (10.0).ofCurrency("EUR")
+//or
+val money = (10.0).ofCurrency<MonetaryAmount>("EUR")
+
 // add
 money + money
 +money
